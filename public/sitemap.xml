@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/blog/2021/05/22/demystifying-the-javascript-closure/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/functions/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/functions/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/jsbasics/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/jsbasics/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/jsfoundations/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/jsfoundations/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/posts/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/</loc>
+    <lastmod>2021-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/hacking/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/hacking/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/ifttt/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/ifttt/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/personal/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/personal/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/reddit/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/reddit/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/blog/2016/02/02/using-webtask-with-ifttt-to-save-reddit-stories-into-mongodb/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/webtask/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/webtask/</loc>
+    <lastmod>2016-02-02T13:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/blog/2014/11/25/different-ways-of-invoking-javascript-functions/</loc>
+    <lastmod>2014-11-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/blog/2014/11/24/javascript-scopes/</loc>
+    <lastmod>2014-11-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/blog/2014/11/21/javascript-functions-travel-first-class/</loc>
+    <lastmod>2014-11-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/articles/</loc>
+    <lastmod>2014-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/articles/</loc>
+    <lastmod>2014-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/blog/2014/11/20/prior-writings/</loc>
+    <lastmod>2014-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/publications/</loc>
+    <lastmod>2014-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/publications/</loc>
+    <lastmod>2014-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/book-review/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/book-review/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/blog/2013/09/11/express-web-development-book-review/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/expressjs/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/expressjs/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/javascript/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/javascript/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/tags/nodejs/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ashishdasnurkar.com/categories/nodejs/</loc>
+    <lastmod>2013-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+</urlset>

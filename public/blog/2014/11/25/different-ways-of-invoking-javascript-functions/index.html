@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Different ways of invoking JavaScript functions – Ashish Dasnurkar</title>
+<meta name="description" content="In JavaScript the way a function is invoked has a significant impact on how the code within it executes, especially regarding this parameter. If you have followed couple …">
+<meta name="created" content="2014-11-25T00:00:00+0000">
+<meta name="modified" content="2014-11-25T00:00:00+0000">
+
+<meta name="contact" content="ashish.dasnurkar@gmail.com">
+<meta property="og:site_name" content="Ashish Dasnurkar">
+<meta property="og:title" content="Different ways of invoking JavaScript functions">
+<meta property="og:url" content="https://ashishdasnurkar.com/blog/2014/11/25/different-ways-of-invoking-javascript-functions/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://ashishdasnurkar.com/blog/2014/11/25/different-ways-of-invoking-javascript-functions/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="stylesheet" href="/css/mobile.2ab74aa64785dcab8114959e76ca140cf76207cd85989bc6d4fc3b12f734a09e.css" media="screen">
+<link rel="stylesheet" href="/css/styles.934ca64e1cd8b39bd18393dc4fa4788aab68ce041fa7830964c671eed3da2b40.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Different ways of invoking JavaScript functions",
+    "datePublished": "2014-11-25T00:00:00Z",
+    "dateModified": "2014-11-25T00:00:00Z",
+    "url" : "https://ashishdasnurkar.com/blog/2014/11/25/different-ways-of-invoking-javascript-functions/",
+    "description": "In JavaScript the way a function is invoked has a significant impact on how the code within it executes, especially regarding this parameter. If you have followed couple …",
+    "keywords": ["functions","jsfoundations","jsbasics"],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://ashishdasnurkar.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ashish Dasnurkar",
+      "url": "https://ashishdasnurkar.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.6e17830ccdded0a13b96d6993865b58202bc2ee750e5892a51858ab048b2bebb.js"></script>
+<script defer src="/js/mobile.min.3a3510028bab9810834389725137cfa50f5d3231799ef9ac70769331fa59859a.js"></script>
+<script src="/js/lib/js.cookie.min.31d1799663bbb6029214d90ba7db9cdc725fa02c16d4b090add3721e44238b6b.js"></script>
+<script defer src="/js/cookieconsent.min.dc432597871717f13f1b8155ea23e5b44fe9e3a64507222aa31df0201b607f98.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Ashish Dasnurkar</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">Different ways of invoking JavaScript functions</h1>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/functions">functions</a></li>
+<li><a href="/tags/jsfoundations">jsfoundations</a></li>
+<li><a href="/tags/jsbasics">jsbasics</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>In JavaScript the way a function is invoked has a significant impact on how the code within it executes, especially regarding <code>this</code> parameter.</p>
+<p>If you have followed couple of my earlier posts I have demonstrated two ways of invoking functions already and they are</p>
+<h4 id="1-invoking-functions-as-surprise-functions">1. Invoking functions as, surprise, functions</h4>
+<h4 id="2-invoking-functions-as-object-methods">2. Invoking functions as object methods</h4>
+<p>Now in addition to these two there are two more ways of invocations</p>
+<h4 id="3-invoking-functions-as-constructors">3. Invoking functions as constructors</h4>
+<h4 id="4-invoking-functions-using-apply-and-call-methods">4. Invoking functions using <code>apply()</code> and <code>call()</code> methods</h4>
+<p>Before I dig into details of each type of function invocation, I must explain two important concepts i.e. two implicit parameters <code>arguments</code> and <code>this</code> that are passed to every invoked function.</p>
+<h3 id="arguments-collection"><code>arguments</code> <em>collection</em></h3>
+<p>Whenever a function is invoked in any of the four ways mentioned above, it can also be supplied with list of arguments which in turn are assigned to the parameters in the same order as defined in function declaration.</p>
+<p>When the number of arguments match number of parameters then first argument is assigned to the first parameter, second argument is assigned to the second parameter and so on.</p>
+<p>When the number of arguments are less than number of parameters then the parameters that have no corresponding arguments are set to undefined.</p>
+<p>When the number of arguments are more than number of parameters then these extra arguments are simply not assigned to any parameters. Important thing to note though is that there is a way to access these extra arguments via implicit parameter called <code>arguments</code></p>
+<p>This implicit <code>arguments</code> parameter is quite deceptive. As in it acts like an array but it isn&rsquo;t really an array. It has <code>length</code> property, its elements can be accessed using array notation and it can also be iterated just like an array can be. But it doesn&rsquo;t have all array methods available on it.</p>
+<h3 id="this-parameter"><code>this</code> parameter</h3>
+<p>This notion of <code>this</code> implicit reference comes from object-oriented languages where methods are usually invoked in the context of an object and <code>this</code> generally points to this <em>function context</em> object. In JavaScript also if you invoke a function as an object&rsquo;s method then its <em>function context</em> is the object and it means <code>this</code> implicitly references to the object. However invoking function as object method is just one of the four ways of invoking a function.</p>
+<p>Let&rsquo;s take a look at each of these four ways of invoking functions and what effect they have on the implicit <code>this</code> parameter they have in detail with sample codes</p>
+<h4 id="1-invoking-functions-as-_functions_">1. Invoking functions as <em>functions</em></h4>
+<p>A function can be invoked simply using the () operator on any expression that resolves to a function reference.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">a</span>() {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>); <span style="color:#75715e">// prints [object Window]
+</span><span style="color:#75715e"></span>}
+<span style="color:#a6e22e">a</span>();
+</code></pre></div>
+<p>When function is invoked in this manner the function context is <code>Window</code> i.e. the global context. This is true even when a function is deeply nested within other functions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">a</span>() {
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">b</span>() {
+       <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">c</span>() {
+          <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>); <span style="color:#75715e">// prints [object Window]
+</span><span style="color:#75715e"></span>       }
+       <span style="color:#a6e22e">c</span>();
+    }
+    <span style="color:#a6e22e">b</span>();
+}
+<span style="color:#a6e22e">a</span>();
+</code></pre></div>
+<p>In above code, for function <code>c</code> function context is still <code>Window</code></p>
+<h4 id="2-invoking-functions-as-object-methods-1">2. Invoking functions as object methods</h4>
+<p>As I described in [earlier post]({% post_url 2014-11-21-javascript-functions-travel-first-class %}), functions can be assigned to object properties and can be invoked using parentheses <code>()</code>.</p>
+<p>Similar to object-oriented languages, if a function is invoked as an object&rsquo;s method then the object becomes the function context.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bon Jovi&#39;</span>};
+<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">sing</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; is singing&#39;</span>);
+}
+<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">sing</span>(); <span style="color:#75715e">// prints Bon Jovi is singing
+</span></code></pre></div>
+<h4 id="3-invoking-functions-as-constructors-1">3. Invoking functions as constructors</h4>
+<p>Functions that can be invoked as constructors are just like any other functions. What makes a function a constructor function is the way it is invoked which is using <code>new</code> keyword.</p>
+<p>When a function is invoked as a constructor function i.e. using <code>new</code> keyword,</p>
+<ol>
+<li>
+<p>A new empty Object is created and passed on to the function as <code>this</code> implicit parameter. <code>this</code> new Object becomes <!-- raw HTML omitted -->function context<!-- raw HTML omitted --> for the constructor function.</p>
+</li>
+<li>
+<p>If nothing is returned from function, by default this newly created Object is returned from it.</p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Singer</span>() {
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sing</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; is singing&#39;</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;
+    };
+}
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Singer</span>();
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">sing</span>() <span style="color:#f92672">===</span> <span style="color:#a6e22e">user</span>); <span style="color:#75715e">// prints true
+</span></code></pre></div>
+<p><em>Note:</em> Nothing is stopping from you to invoke a constructor function like a normal function i.e. without <code>new</code> keyword. In above example calling <code>singer();</code> will get <em>window</em> object passed to it as its function context and get a <em>sing</em> method attached on it. Not exactly how you would want a constructor function to work.</p>
+<h4 id="4-invoking-function-with-apply-and-call-methods">4. Invoking function with <code>apply()</code> and <code>call()</code> methods</h4>
+<p>All the above ways of function invocation dictate what will be the <em>function context</em> But what if you want to force what will be the <em>function context</em> ? Well, function themselves provides you with the means to do so with <code>apply()</code> and <code>call()</code> methods. Wait a min though. Methods? methods of functions? Yes, you heard it right. Remember [functions are first class objects]({% post_url 2014-11-21-javascript-functions-travel-first-class %}) and what do objects have? Objects have methods, and data of course. Every function is an object. Specifically, each function is an object of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a>.</p>
+<p>Ok, let&rsquo;s see how to use <code>apply()</code> and <code>call()</code> methods to explicitely set <code>this</code> then.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">randomWeights</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">30</span>];
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addToBox</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">weight</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">arguments</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+		<span style="color:#a6e22e">weight</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">arguments</span>[<span style="color:#a6e22e">i</span>];
+	}
+	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">weight</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">weight</span>;
+}
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">redBox</span> <span style="color:#f92672">=</span> {};
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">blueBox</span> <span style="color:#f92672">=</span> {};
+
+<span style="color:#a6e22e">addToBox</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">redBox</span>, <span style="color:#a6e22e">randomWeights</span>);
+<span style="color:#a6e22e">addToBox</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">blueBox</span>, <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>);
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">redBox</span>.<span style="color:#a6e22e">weight</span>); <span style="color:#75715e">// prints &#39;60&#39;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">blueBox</span>.<span style="color:#a6e22e">weight</span>);<span style="color:#75715e">// prints &#39;15&#39;
+</span></code></pre></div>
+<p>Both, <code>apply()</code> and <code>call()</code> methods takes first argument as the object that can be used as <em>function context</em> i.e. <code>this</code>. The difference between these two methods is how the rest of the arguments are supplied to the function. <code>apply()</code> takes an array of arguments whereas <code>call()</code> takes any number of arguments.</p>
+
+
+</div>
+</article>
+</main>
+
+
+<aside class="sidebar layout__second-sidebar">
+<section>
+<h4 class="menu"><a href="/posts/" class="active" aria-current="page">Posts</a></h4>
+<ul class="menu">
+<li><a href="/blog/2021/05/22/demystifying-the-javascript-closure/">demystifying the javascript closure</a></li>
+<li><a href="/blog/2016/02/02/using-webtask-with-ifttt-to-save-reddit-stories-into-mongodb/">Using webtask with ifttt to save reddit stories into mongodb</a></li>
+<li><a href="/blog/2014/11/25/different-ways-of-invoking-javascript-functions/" class="active" aria-current="page">Different ways of invoking JavaScript functions</a></li>
+<li><a href="/blog/2014/11/24/javascript-scopes/">JavaScript scopes</a></li>
+<li><a href="/blog/2014/11/21/javascript-functions-travel-first-class/">JavaScript functions travel first class</a></li>
+<li><a href="/blog/2014/11/20/prior-writings/">Prior writings</a></li>
+<li><a href="/blog/2013/09/11/express-web-development-book-review/">Express Web Development: Book Review</a></li>
+</ul>
+</section>
+</aside>
+<footer class="footer layout__footer">
+<p>This site is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+<p>Powered by <a href="https://gohugo.io/">Hugo</a> and the <a href="https://github.com/frjo/hugo-theme-zen">Zen theme</a>.</p>
+
+</footer>
+<div class="cookieconsent layout__cookieconsent hidden">
+  <div class="cookieconsent__message">
+    This website uses non essential cookies for tracking and analytics that you can accept or decline.
+    
+  </div>
+  <div class="cookieconsent__actions">
+    <button class="button button--small button--cookieconsent button--decline" type="button" data-consent="false">Decline tracking</button>
+    <button class="button button--small button--cookieconsent button--accept" type="button" data-consent="true">Accept tracking</button>
+  </div>
+</div>
+</div>
+<div class="mobile-nav" dir="ltr">
+  <div class="mobile-nav__cover"></div>
+  <a href="#navigation" class="mobile-nav__toggle" aria-haspopup="true" role="button">Menu</a>
+  <div class="mobile-nav__sheet">
+    <div class="mobile-nav__region">
+    
+    </div>
+    <nav class="mobile-nav__main-menu">
+    <h2 class="visually-hidden">Main menu</h2>
+    <ul class="mobile-nav__navbar">
+    <li><a href="/">Home</a></li>
+    <li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

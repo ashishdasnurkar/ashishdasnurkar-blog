@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="nojs" lang="en-us" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Using webtask with ifttt to save reddit stories into mongodb – Ashish Dasnurkar</title>
+<meta name="description" content="While reddit may not be the frontpage of internet for me, I do visit it often to keep in touch with programming, technology and sports news. Reddit has almost become my …">
+<meta name="created" content="2016-02-02T13:43:40+0000">
+<meta name="modified" content="2016-02-02T13:43:40+0000">
+
+<meta name="contact" content="ashish.dasnurkar@gmail.com">
+<meta property="og:site_name" content="Ashish Dasnurkar">
+<meta property="og:title" content="Using webtask with ifttt to save reddit stories into mongodb">
+<meta property="og:url" content="https://ashishdasnurkar.com/blog/2016/02/02/using-webtask-with-ifttt-to-save-reddit-stories-into-mongodb/">
+<meta property="og:type" content="article">
+
+<meta name="generator" content="Hugo 0.80.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="canonical" href="https://ashishdasnurkar.com/blog/2016/02/02/using-webtask-with-ifttt-to-save-reddit-stories-into-mongodb/">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="stylesheet" href="/css/mobile.2ab74aa64785dcab8114959e76ca140cf76207cd85989bc6d4fc3b12f734a09e.css" media="screen">
+<link rel="stylesheet" href="/css/styles.934ca64e1cd8b39bd18393dc4fa4788aab68ce041fa7830964c671eed3da2b40.css">
+<link rel="stylesheet" href="/css/print.27fc184f8670f41a2690985390779e7b20335a8fadff8fa015cf9417ffe50c36.css" media="print">
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Using webtask with ifttt to save reddit stories into mongodb",
+    "datePublished": "2016-02-02T13:43:40Z",
+    "dateModified": "2016-02-02T13:43:40Z",
+    "url" : "https://ashishdasnurkar.com/blog/2016/02/02/using-webtask-with-ifttt-to-save-reddit-stories-into-mongodb/",
+    "description": "While reddit may not be the frontpage of internet for me, I do visit it often to keep in touch with programming, technology and sports news. Reddit has almost become my …",
+    "keywords": ["hacking","webtask","ifttt","reddit","personal"],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://ashishdasnurkar.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ashish Dasnurkar",
+      "url": "https://ashishdasnurkar.com"
+    }
+  }
+</script>
+
+<script src="/js/script-early.min.a8d899ac88f2a778985767b86ce681945e3fa2069c3c9efd17e5e5b594d3ba1f.js"></script>
+<script defer src="/js/lib/umbrella.min.6e17830ccdded0a13b96d6993865b58202bc2ee750e5892a51858ab048b2bebb.js"></script>
+<script defer src="/js/mobile.min.3a3510028bab9810834389725137cfa50f5d3231799ef9ac70769331fa59859a.js"></script>
+<script src="/js/lib/js.cookie.min.31d1799663bbb6029214d90ba7db9cdc725fa02c16d4b090add3721e44238b6b.js"></script>
+<script defer src="/js/cookieconsent.min.dc432597871717f13f1b8155ea23e5b44fe9e3a64507222aa31df0201b607f98.js"></script>
+<script defer src="/js/script.min.f7f56769569fdf7a80d073b6775c6cd9ed8ae528864cd3f2aa1c8c3fe73f87ea.js"></script>
+
+
+</head>
+
+<body class="single-page">
+<div class="page layout__page layout__sidebar-second">
+<header class="header layout__header">
+<a href="/" title="Home" rel="home" class="header__logo"><img src="/images/logo.png" alt="Home" class="header__logo-image"></a>
+<h1 class="header__site-name">
+<a href="/" title="Home" class="header__site-link" rel="home"><span>Ashish Dasnurkar</span></a>
+</h1>
+<div class="region header__region">
+</div>
+</header>
+
+<nav class="main-menu layout__navigation">
+<h2 class="visually-hidden">Main menu</h2>
+<ul class="navbar">
+<li><a href="/">Home</a></li>
+<li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+</ul>
+</nav>
+
+
+<main class="main layout__main">
+<article class="section-posts single-view">
+<header>
+<h1 class="title ">Using webtask with ifttt to save reddit stories into mongodb</h1>
+<div class="tags">
+Tags:
+<ul>
+<li><a href="/tags/hacking">hacking</a></li>
+<li><a href="/tags/webtask">webtask</a></li>
+<li><a href="/tags/ifttt">ifttt</a></li>
+<li><a href="/tags/reddit">reddit</a></li>
+<li><a href="/tags/personal">personal</a></li>
+</ul>
+</div>
+</header>
+<div class="content">
+<p>While reddit may not be the frontpage of internet for me, I do visit it often to keep in touch with programming, technology and sports news. Reddit has almost become my default bookmarking system where I often &ldquo;save&rdquo; reddit stories and read or refer them later. As the number of saved stories have gone up it has become quite difficult to search specific stories when I need them. There is no way to categorise them by subreddit either. I often thought about writing a node script or a cron job to fetch saved stories myself and dump them in a database or even a plaintext file for easy full-text search.</p>
+<p>While there are ton of reddit related recipes on <a href="http://ifttt.com/">ifttt</a> but none of them fit specifically my purpose. Then I was told about <a href="https://webtask.io/">webtask.io</a> and I immediately liked this idea of running a webtask, basically a piece of code that can be executed with a simple http call. Webtask combined with ifttt is a perfect combination as I get a ifttt trigger fired whenever I save a post on reddit and call a webtask action to do anything I want. I have complete control over the action part and not limited by the ifttt actions only.</p>
+<p>So here is what I did briefly. I created a webtask that is invoked whenever I save a post on reddit. This webtask connects to mongolab mongodb instance and saves the reddit post meta data in &ldquo;posts&rdquo; collection. Later on I plan to write a node cli client to fetch/search these posts from terminal.</p>
+<p>For now I will just document the webtask creation and ifttt configuration so just in case if you want to setup similar ifttt task you can follow along as well.</p>
+<h1 id="create-webtask">create webtask</h1>
+<p>A webtask is a simple node module. A simplest webtask could be as simple as a hello.js file containing following code</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">cb</span>) {
+  <span style="color:#a6e22e">cb</span>(<span style="color:#66d9ef">null</span>, <span style="color:#e6db74">&#39;hello webtasks!&#39;</span>);
+}
+</code></pre></div>
+<p>and you can create a webtask using webtask cli (install it fist via <a href="https://webtask.io/cli">https://webtask.io/cli</a>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#e6db74">`</span>wt create hello.js<span style="color:#e6db74">`</span></code></pre></div>
+<p>Executing above command gives you a webtask url of sorts <code>https://webtask.it.auth0.com/api/run/&lt;some_magic_string&gt;/hello?webtask_no_cache=1</code>. To execute this webtask you simply have to call this url either via browser or via curl manually. Or with any http client library really. You can also host your webtask source code on a publically accessible url and create a webtask with that url.</p>
+<p>For my purpose I created a <a href="https://github.com/ashishdasnurkar/redditwebtask">github repo</a> and pushed my redditwebtask into it. Now remember that webtask can be executed via http call so you can also pass some data to your webtask via query string. This is exactly what I needed. The idea is to use ifttt trigger to call redditwebtask via url and pass reddit post metadata to it in querystring. Let&rsquo;s first take a look at redditwebtask implementation and see how it saves the metadata to mongolab mongodb instance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">MongoClient</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;mongodb&#39;</span>).<span style="color:#a6e22e">MongoClient</span>;
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">savePost</span>(<span style="color:#a6e22e">post</span>, <span style="color:#a6e22e">db</span>, <span style="color:#a6e22e">cb</span>) {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">col</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">collection</span>(<span style="color:#e6db74">&#39;posts&#39;</span>);
+
+	<span style="color:#a6e22e">col</span>.<span style="color:#a6e22e">insertOne</span>(<span style="color:#a6e22e">post</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">r</span>) {
+		<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">err</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cb</span>(<span style="color:#a6e22e">err</span>);
+    	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;inserted &#39;</span>, <span style="color:#a6e22e">post</span>);
+    	<span style="color:#a6e22e">cb</span>(<span style="color:#66d9ef">null</span>);
+	});
+};
+
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">done</span>) { 
+	<span style="color:#a6e22e">MongoClient</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">MONGO_URL</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">db</span>) {
+	    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">err</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">done</span>(<span style="color:#a6e22e">err</span>);
+
+	    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">post</span> <span style="color:#f92672">=</span> {};
+	    <span style="color:#a6e22e">post</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">title</span>;
+	    <span style="color:#a6e22e">post</span>.<span style="color:#a6e22e">content</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">content</span>;
+	    <span style="color:#a6e22e">post</span>.<span style="color:#a6e22e">postURL</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">postURL</span>;
+	    <span style="color:#a6e22e">post</span>.<span style="color:#a6e22e">subreddit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">subreddit</span>;
+
+	    <span style="color:#a6e22e">savePost</span>(<span style="color:#a6e22e">post</span>, <span style="color:#a6e22e">db</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>) {
+	    	<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">err</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">done</span>(<span style="color:#a6e22e">err</span>);
+	    	<span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">close</span>();
+	    	<span style="color:#a6e22e">done</span>(<span style="color:#66d9ef">null</span>, <span style="color:#e6db74">&#39;Success&#39;</span>);
+	    })
+	});
+};
+</code></pre></div>
+<p>As I said earlier webtask is a node module and behind the scenes it is executed inside a <a href="https://webtask.io/docs/how">webtask runtime</a>. This runtime provides generic and uniform execution environment which basically means access to lot of other popular node modules :)</p>
+<p>Here I am &ldquo;require&quot;ing official mongodb node module to connect with mongodb instance.</p>
+<p>The webtask module itself is a JavaScript function that takes two parameters; a <code>ctx</code> context object that provides access to any http querystring parameters passed to our webtask and a <code>done</code> callback function. There are <a href="https://webtask.io/docs/model">different forms</a> of this JavaScript function but this is one that is perfect for my use case.</p>
+<p>Rest of the code is pretty self-explanatory. I connect to mongodb instance via <code>MongoClinet.connect</code> call with passed in MONGO_URI and save the post metadata in &ldquo;posts&rdquo; collection using mongodb driver api <code>insertOne</code>.</p>
+<p>Next step is to actaully create our redditwebtask using wt-cli <code>wt create</code> command. Remember to create mongolab mongodb database and database user first as you need these to form your MONGO_URI connect parameter.</p>
+<p><img src="/images/create_webtask_command.png" alt="wt create command"></p>
+<p>Creating webtask by executing <code>wt create</code> command return a url. Later you will use this url to setup an action in ifttt (step 6 below)</p>
+<h1 id="create-ifttt-trigger-and-action">Create IFTTT trigger and action</h1>
+<p>Next, I added a recipe on ifttt.</p>
+<p>Step 1. Choose reddit channel</p>
+<p><img src="/images/choose_reddit_trigger_step1.png" alt="ifttt reddit channel"></p>
+<p>Step 2. Choose &ldquo;New post saved by you&rdquo; trigger.
+This will take you to reddit login and authorize ifttt to certain permissions on your reddit account.</p>
+<p><img src="/images/choose_post_save_trigger_step2.png" alt="Choose reddit trigger"></p>
+<p>Step 3. Create trigger</p>
+<p><img src="/images/create_trigger_step3.png" alt="create trigger"></p>
+<p>Step 4. Next, choose Maker channel for the &ldquo;that&rdquo; action part in ifttt</p>
+<p><img src="/images/choose_maker_channel_step4.png" alt="Choose maker channel"></p>
+<p>Step 5. Select the &ldquo;Make web request&rdquo; action</p>
+<p><img src="/images/choose_make_web_request_step5.png" alt="Select make web request"></p>
+<p>Step 6. Configure ifttt to execute webtask by making a request to webtask url and pass &ldquo;ingredients&rdquo; i.e. reddit saved post metadata to the webtask</p>
+<p><img src="/images/maker_channel_settings_step6.png" alt="configure webtask url"></p>
+<h1 id="troubleshooting">Troubleshooting</h1>
+<p>IFTTT takes bit of time to trigger the webtask web request. You can try the &ldquo;Check recipe&rdquo; buttom om ifttt once yur recipe is created to force the trigger.</p>
+<p>If &ldquo;Check recipe&rdquo; throws any error, check the webtask logs by running <code>wt logs</code> command. This command streams the webtask logs so you might need to click &ldquo;Check recipe&rdquo; while this command is running as it won&rsquo;t show past logs.</p>
+<p>You could also test the webtask locally using the <code>test.js</code> in the repo (refer to readme in github repo to see how to use it).</p>
+
+
+</div>
+</article>
+</main>
+
+
+<aside class="sidebar layout__second-sidebar">
+<section>
+<h4 class="menu"><a href="/posts/" class="active" aria-current="page">Posts</a></h4>
+<ul class="menu">
+<li><a href="/blog/2021/05/22/demystifying-the-javascript-closure/">demystifying the javascript closure</a></li>
+<li><a href="/blog/2016/02/02/using-webtask-with-ifttt-to-save-reddit-stories-into-mongodb/" class="active" aria-current="page">Using webtask with ifttt to save reddit stories into mongodb</a></li>
+<li><a href="/blog/2014/11/25/different-ways-of-invoking-javascript-functions/">Different ways of invoking JavaScript functions</a></li>
+<li><a href="/blog/2014/11/24/javascript-scopes/">JavaScript scopes</a></li>
+<li><a href="/blog/2014/11/21/javascript-functions-travel-first-class/">JavaScript functions travel first class</a></li>
+<li><a href="/blog/2014/11/20/prior-writings/">Prior writings</a></li>
+<li><a href="/blog/2013/09/11/express-web-development-book-review/">Express Web Development: Book Review</a></li>
+</ul>
+</section>
+</aside>
+<footer class="footer layout__footer">
+<p>This site is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+<p>Powered by <a href="https://gohugo.io/">Hugo</a> and the <a href="https://github.com/frjo/hugo-theme-zen">Zen theme</a>.</p>
+
+</footer>
+<div class="cookieconsent layout__cookieconsent hidden">
+  <div class="cookieconsent__message">
+    This website uses non essential cookies for tracking and analytics that you can accept or decline.
+    
+  </div>
+  <div class="cookieconsent__actions">
+    <button class="button button--small button--cookieconsent button--decline" type="button" data-consent="false">Decline tracking</button>
+    <button class="button button--small button--cookieconsent button--accept" type="button" data-consent="true">Accept tracking</button>
+  </div>
+</div>
+</div>
+<div class="mobile-nav" dir="ltr">
+  <div class="mobile-nav__cover"></div>
+  <a href="#navigation" class="mobile-nav__toggle" aria-haspopup="true" role="button">Menu</a>
+  <div class="mobile-nav__sheet">
+    <div class="mobile-nav__region">
+    
+    </div>
+    <nav class="mobile-nav__main-menu">
+    <h2 class="visually-hidden">Main menu</h2>
+    <ul class="mobile-nav__navbar">
+    <li><a href="/">Home</a></li>
+    <li><a href="/posts/" class="active" aria-current="page">Posts</a></li>
+    </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

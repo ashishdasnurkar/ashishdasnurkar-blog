@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>articles on Ashish Dasnurkar</title>
+    <link>https://ashishdasnurkar.com/tags/articles/</link>
+    <description>Recent content in articles on Ashish Dasnurkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Nov 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ashishdasnurkar.com/tags/articles/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Prior writings</title>
+      <link>https://ashishdasnurkar.com/blog/2014/11/20/prior-writings/</link>
+      <pubDate>Thu, 20 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>https://ashishdasnurkar.com/blog/2014/11/20/prior-writings/</guid>
+      <description>&lt;p&gt;Prior to this blog I have written several articles and blogs on other sites. I just want to list them all here for easy access for myself later on.&lt;/p&gt;
+&lt;p&gt;List of articles in no particular order&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ibm.com/developerworks/library/wa-aj-zkcdi/&#34;&gt;Explore the CDI programming model in ZK&lt;/a&gt; An article I wrote for IBM DeveloperWorks to introduce ZK CDI integration library that I had developed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Two part series of articles introducing how to integrate third party JavaScript libraries with ZK framework.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://books.zkoss.org/wiki/Small_Talks/2012/November/Integrate_3rd_Party_Javascript_Libraries_In_ZK&#34;&gt;Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://books.zkoss.org/wiki/Small_Talks/2013/February/Integrate_3rd_Party_Javascript_Libraries_In_ZK_Using_Clientside_Controller&#34;&gt;Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://books.zkoss.org/wiki/Small_Talks/2012/August/MVVM_In_Java&#34;&gt;MVVM in Java&lt;/a&gt; An article describing how to implement MVVM design pattern in Java using ZK framework.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.zkoss.org/index.php/2012/03/30/history-management-with-html5-history-api-in-zk/&#34;&gt;History management in ZK with HTML5 History API&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://books.zkoss.org/wiki/Small_Talks/2012/March/Securing_ZK_Applications_With_Apache_Shiro&#34;&gt;Securing ZK applications with Apache Shiro&lt;/a&gt; A How-To guide for securing ZK applications using Apache Shiro, a security framework.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Three part article series introducing different ways of integrating MongoDB, a popular NoSQL database with ZK application&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://books.zkoss.org/wiki/Small_Talks/2012/January/ZK_With_MongoDB_Part_1_-_Using_MongoDB_Java_Driver&#34;&gt;Part 1 - Using MongoDB Java Driver&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://books.zkoss.org/wiki/Small_Talks/2012/January/ZK_With_MongoDB_Part_2_-_Using_Morphia&#34;&gt;Part 2 - Using Morphia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://books.zkoss.org/wiki/Small_Talks/2012/January/ZK_With_MongoDB_Part_3_-_Using_Spring_Data&#34;&gt;Part 3 - Using Spring Data&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://books.zkoss.org/wiki/ZK_Spring_Essentials&#34;&gt;ZK Spring Essentials Documentation&lt;/a&gt; I worked on ZK Spring integration library to upgrade it from Spring 2.x to Spring 3.x version and re-wrote this documentation to introduce various features.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.zkoss.org/index.php/2011/07/19/absolutelayout-component/&#34;&gt;Absolutelayout component&lt;/a&gt; A blogpost introducing absolutelayout ZK component I had developed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.zkoss.org/index.php/2010/09/07/export-zk-spredsheet-to-pdf/&#34;&gt;Export ZK Spreadsheet to PDF&lt;/a&gt; A blogpost introducing a feature I built for ZK Spreadsheet, an excel like web component, that allowed exporting ZK Spreadsheet contents to a PDF for offline access or printing it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.zkoss.org/index.php/2010/02/11/handling-zk-events-using-cdi-event-notification-model/&#34;&gt;Handling ZK Events using CDI event notification model&lt;/a&gt; A blogpost I wrote to introduce ZK CDI integration library feature for using CDI event notification model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

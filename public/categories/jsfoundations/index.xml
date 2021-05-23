@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jsfoundations on Ashish Dasnurkar</title>
+    <link>https://ashishdasnurkar.com/categories/jsfoundations/</link>
+    <description>Recent content in jsfoundations on Ashish Dasnurkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 May 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ashishdasnurkar.com/categories/jsfoundations/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>demystifying the javascript closure</title>
+      <link>https://ashishdasnurkar.com/blog/2021/05/22/demystifying-the-javascript-closure/</link>
+      <pubDate>Sat, 22 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://ashishdasnurkar.com/blog/2021/05/22/demystifying-the-javascript-closure/</guid>
+      <description>&lt;p&gt;Imagine you are a mexican cook in the middle of an imaginary mexican desert. Your job is to cook whenever you are called upon. For you to be able to cook something, you need access to some usual stuff like ingredients, utensils and fire. Of course if you are in the middle of an imaginary desert you won&amp;rsquo;t have anything on you or have access to anything. So let&amp;rsquo;s also give you some super power, maybe flexible, stretchable, unbreakable arms that can reach to any &lt;!-- raw HTML omitted --&gt;corners&lt;!-- raw HTML omitted --&gt; part of the earth to retrieve whatever you need. This means you have access to anything on this planet and thus the planet is in your &amp;ldquo;scope&amp;rdquo;. As long as you are alive and can be called upon, you will have access to everything in your &lt;em&gt;scope&lt;/em&gt; i.e the entire planet.&lt;/p&gt;
+&lt;p&gt;Now let&amp;rsquo;s say I have come to know some magic spells from the e-learning course I took at Hogwarts online school of magic. If I were to turn you into a JavaScript function and stuff you into an html page via script tag, this is how you will look like&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;frying_pan&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;magic&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;olive&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tortilla&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;plain tortilla&amp;#39;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mexican_cook&lt;/span&gt;() {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;add &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; oil to &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;frying_pan&lt;/span&gt;
+		&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; frying pan and do something with &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tortilla&lt;/span&gt;);
+	&lt;span style=&#34;color:#75715e&#34;&gt;// I&amp;#39;m not a mexican cook so not sure
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// what and how the hell you are going to cook something so
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// TODO: get a real mexican cook to fill in the details
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;mexican_cook&lt;/span&gt;();
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Assuming this is the only script tag and hence only piece of JavaScript code in this html page, everything inside the script tag is accessible to you i.e. &lt;!-- raw HTML omitted --&gt;mexican_cook&lt;!-- raw HTML omitted --&gt; function here. Hence the outout is as you would expect&lt;/p&gt;
+&lt;p&gt;Well this is all pretty understandable to you because everything declared in above code is in &lt;em&gt;global&lt;/em&gt; scope hence is accessible to &lt;!-- raw HTML omitted --&gt;mexican_cook&lt;!-- raw HTML omitted --&gt; function. So if you go by the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures&#34;&gt;MDN way of defining closure&lt;/a&gt; which I quote below, global scope is the &lt;em&gt;closure&lt;/em&gt; in which you, the &lt;!-- raw HTML omitted --&gt;mexican_cook&lt;!-- raw HTML omitted --&gt; function lives in above example.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Closures are functions that refer to independent (free) variables. In other words, the function defined in the closure &amp;lsquo;remembers&amp;rsquo; the environment in which it was created.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But you probably are still confused, aren&amp;rsquo;t you? Because everything is global. Everything is accessible. If closure is global then why not just call it global. Fair enough. Let me take the mexican cook analogy a bit more further to drive the point of &lt;em&gt;closure&lt;/em&gt; home, but before that I want you to remember what [JavaScript scopes]({% post_url 2014-11-22-javascript-scopes%}) are.&lt;/p&gt;
+&lt;p&gt;JavaScript scopes are function based. Every function defines its own scope and a function defined within another function has access to all the other functions and variables defined in outer function.&lt;/p&gt;
+&lt;p&gt;Ok now imagine you are re-born again as a mexican cook (you didn&amp;rsquo;t think you would survive after I stuffed you in an html page now, did you?) but this time you were born inside a taco truck. You have access to everything inside the truck and can cook whenever called upon.&lt;/p&gt;
+&lt;p&gt;All right, time for some magic again. I&amp;rsquo;m going to stuff you inside an html page via a script tag again but this time along with your taco truck. This is how you would look like then&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;taco_truck&lt;/span&gt;() {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;frying_pan&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;magic&amp;#39;&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;olive&amp;#39;&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tortilla&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;plain tortilla&amp;#39;&lt;/span&gt;;
+
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mexican_cook&lt;/span&gt;() {
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;add &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; oil to &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;frying_pan&lt;/span&gt;
+			&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; frying pan and do something with &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tortilla&lt;/span&gt;);
+		&lt;span style=&#34;color:#75715e&#34;&gt;// I&amp;#39;m not a mexican cook so not sure
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;// what and how the hell you are going to cook something so
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;// TODO: get a real mexican cook to fill in the details
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	}
+
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;mexican_cook&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// calling you to cook something
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;span style=&#34;color:#75715e&#34;&gt;// imagine I&amp;#39;m tapping on the outside of your truck here
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// to get you to cook something for me
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;taco_truck&lt;/span&gt;();
+
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Okay, I hear you. You say this isn&amp;rsquo;t all that different than the previous standing-in-the-middle-of-desert situation. Back then the &lt;em&gt;closure&lt;/em&gt; was &lt;em&gt;global&lt;/em&gt; scope and here the closure is &lt;!-- raw HTML omitted --&gt;taco_truck&lt;!-- raw HTML omitted --&gt; function.&lt;/p&gt;
+&lt;p&gt;Now, at this point I want to remind you another important concept about JavaScript functions. They are first class citizens of the JavaScript language. So just like &lt;em&gt;objects&lt;/em&gt; they can be assigned to variables and passed to other functions or returned as values from functions.&lt;/p&gt;
+&lt;p&gt;Considering this fact, what if the taco truck in our story has the phone number of you i.e. you the &lt;!-- raw HTML omitted --&gt;mexican_cook&lt;!-- raw HTML omitted --&gt; function written on the outside for everyone to see. So instead of tapping on the outside of taco truck, someone could call your number any time later. Even when the taco truck is not in sight. Equivalent of this situation would look something like below in actual JavaScript code&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;taco_truck&lt;/span&gt;() {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;frying_pan&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;magic&amp;#39;&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;olive&amp;#39;&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tortilla&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;plain tortilla&amp;#39;&lt;/span&gt;;
+
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mexican_cook&lt;/span&gt;() {
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;add &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;oil&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; oil to &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;frying_pan&lt;/span&gt;
+			&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; frying pan and do something with &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tortilla&lt;/span&gt;);
+		&lt;span style=&#34;color:#75715e&#34;&gt;// I&amp;#39;m not a mexican cook so not sure
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;// what and how the hell you are going to cook something so
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;// TODO: get a real mexican cook to fill in the details
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	}
+
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mexican_cook&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;// taco truck is handing your number to anyone seeing it
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;span style=&#34;color:#75715e&#34;&gt;// imagine someone just drove by your taco_truck and wrote down your number
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;cook_number&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;taco_truck&lt;/span&gt;();
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;taco_truck&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;// taco_truck is out of sight
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;setTimeout&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;cook_number&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// calling the mexican_cook after 3 looooooong seconds
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	}, &lt;span style=&#34;color:#ae81ff&#34;&gt;3000&lt;/span&gt;);
+
+&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Different ways of invoking JavaScript functions</title>
+      <link>https://ashishdasnurkar.com/blog/2014/11/25/different-ways-of-invoking-javascript-functions/</link>
+      <pubDate>Tue, 25 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>https://ashishdasnurkar.com/blog/2014/11/25/different-ways-of-invoking-javascript-functions/</guid>
+      <description>&lt;p&gt;In JavaScript the way a function is invoked has a significant impact on how the code within it executes, especially regarding &lt;code&gt;this&lt;/code&gt; parameter.&lt;/p&gt;
+&lt;p&gt;If you have followed couple of my earlier posts I have demonstrated two ways of invoking functions already and they are&lt;/p&gt;
+&lt;h4 id=&#34;1-invoking-functions-as-surprise-functions&#34;&gt;1. Invoking functions as, surprise, functions&lt;/h4&gt;
+&lt;h4 id=&#34;2-invoking-functions-as-object-methods&#34;&gt;2. Invoking functions as object methods&lt;/h4&gt;
+&lt;p&gt;Now in addition to these two there are two more ways of invocations&lt;/p&gt;
+&lt;h4 id=&#34;3-invoking-functions-as-constructors&#34;&gt;3. Invoking functions as constructors&lt;/h4&gt;
+&lt;h4 id=&#34;4-invoking-functions-using-apply-and-call-methods&#34;&gt;4. Invoking functions using &lt;code&gt;apply()&lt;/code&gt; and &lt;code&gt;call()&lt;/code&gt; methods&lt;/h4&gt;
+&lt;p&gt;Before I dig into details of each type of function invocation, I must explain two important concepts i.e. two implicit parameters &lt;code&gt;arguments&lt;/code&gt; and &lt;code&gt;this&lt;/code&gt; that are passed to every invoked function.&lt;/p&gt;
+&lt;h3 id=&#34;arguments-collection&#34;&gt;&lt;code&gt;arguments&lt;/code&gt; &lt;em&gt;collection&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;Whenever a function is invoked in any of the four ways mentioned above, it can also be supplied with list of arguments which in turn are assigned to the parameters in the same order as defined in function declaration.&lt;/p&gt;
+&lt;p&gt;When the number of arguments match number of parameters then first argument is assigned to the first parameter, second argument is assigned to the second parameter and so on.&lt;/p&gt;
+&lt;p&gt;When the number of arguments are less than number of parameters then the parameters that have no corresponding arguments are set to undefined.&lt;/p&gt;
+&lt;p&gt;When the number of arguments are more than number of parameters then these extra arguments are simply not assigned to any parameters. Important thing to note though is that there is a way to access these extra arguments via implicit parameter called &lt;code&gt;arguments&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This implicit &lt;code&gt;arguments&lt;/code&gt; parameter is quite deceptive. As in it acts like an array but it isn&amp;rsquo;t really an array. It has &lt;code&gt;length&lt;/code&gt; property, its elements can be accessed using array notation and it can also be iterated just like an array can be. But it doesn&amp;rsquo;t have all array methods available on it.&lt;/p&gt;
+&lt;h3 id=&#34;this-parameter&#34;&gt;&lt;code&gt;this&lt;/code&gt; parameter&lt;/h3&gt;
+&lt;p&gt;This notion of &lt;code&gt;this&lt;/code&gt; implicit reference comes from object-oriented languages where methods are usually invoked in the context of an object and &lt;code&gt;this&lt;/code&gt; generally points to this &lt;em&gt;function context&lt;/em&gt; object. In JavaScript also if you invoke a function as an object&amp;rsquo;s method then its &lt;em&gt;function context&lt;/em&gt; is the object and it means &lt;code&gt;this&lt;/code&gt; implicitly references to the object. However invoking function as object method is just one of the four ways of invoking a function.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s take a look at each of these four ways of invoking functions and what effect they have on the implicit &lt;code&gt;this&lt;/code&gt; parameter they have in detail with sample codes&lt;/p&gt;
+&lt;h4 id=&#34;1-invoking-functions-as-_functions_&#34;&gt;1. Invoking functions as &lt;em&gt;functions&lt;/em&gt;&lt;/h4&gt;
+&lt;p&gt;A function can be invoked simply using the () operator on any expression that resolves to a function reference.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;() {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints [object Window]
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When function is invoked in this manner the function context is &lt;code&gt;Window&lt;/code&gt; i.e. the global context. This is true even when a function is deeply nested within other functions.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;() {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;() {
+       &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;() {
+          &lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints [object Window]
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;       }
+       &lt;span style=&#34;color:#a6e22e&#34;&gt;c&lt;/span&gt;();
+    }
+    &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;();
+}
+&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In above code, for function &lt;code&gt;c&lt;/code&gt; function context is still &lt;code&gt;Window&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2-invoking-functions-as-object-methods-1&#34;&gt;2. Invoking functions as object methods&lt;/h4&gt;
+&lt;p&gt;As I described in [earlier post]({% post_url 2014-11-21-javascript-functions-travel-first-class %}), functions can be assigned to object properties and can be invoked using parentheses &lt;code&gt;()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Similar to object-oriented languages, if a function is invoked as an object&amp;rsquo;s method then the object becomes the function context.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;name&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Bon Jovi&amp;#39;&lt;/span&gt;};
+&lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;sing&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; is singing&amp;#39;&lt;/span&gt;);
+}
+&lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;sing&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// prints Bon Jovi is singing
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4 id=&#34;3-invoking-functions-as-constructors-1&#34;&gt;3. Invoking functions as constructors&lt;/h4&gt;
+&lt;p&gt;Functions that can be invoked as constructors are just like any other functions. What makes a function a constructor function is the way it is invoked which is using &lt;code&gt;new&lt;/code&gt; keyword.&lt;/p&gt;
+&lt;p&gt;When a function is invoked as a constructor function i.e. using &lt;code&gt;new&lt;/code&gt; keyword,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;A new empty Object is created and passed on to the function as &lt;code&gt;this&lt;/code&gt; implicit parameter. &lt;code&gt;this&lt;/code&gt; new Object becomes &lt;!-- raw HTML omitted --&gt;function context&lt;!-- raw HTML omitted --&gt; for the constructor function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If nothing is returned from function, by default this newly created Object is returned from it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Singer&lt;/span&gt;() {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;sing&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;() {
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; is singing&amp;#39;&lt;/span&gt;);
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;;
+    };
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Singer&lt;/span&gt;();
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;sing&lt;/span&gt;() &lt;span style=&#34;color:#f92672&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; Nothing is stopping from you to invoke a constructor function like a normal function i.e. without &lt;code&gt;new&lt;/code&gt; keyword. In above example calling &lt;code&gt;singer();&lt;/code&gt; will get &lt;em&gt;window&lt;/em&gt; object passed to it as its function context and get a &lt;em&gt;sing&lt;/em&gt; method attached on it. Not exactly how you would want a constructor function to work.&lt;/p&gt;
+&lt;h4 id=&#34;4-invoking-function-with-apply-and-call-methods&#34;&gt;4. Invoking function with &lt;code&gt;apply()&lt;/code&gt; and &lt;code&gt;call()&lt;/code&gt; methods&lt;/h4&gt;
+&lt;p&gt;All the above ways of function invocation dictate what will be the &lt;em&gt;function context&lt;/em&gt; But what if you want to force what will be the &lt;em&gt;function context&lt;/em&gt; ? Well, function themselves provides you with the means to do so with &lt;code&gt;apply()&lt;/code&gt; and &lt;code&gt;call()&lt;/code&gt; methods. Wait a min though. Methods? methods of functions? Yes, you heard it right. Remember [functions are first class objects]({% post_url 2014-11-21-javascript-functions-travel-first-class %}) and what do objects have? Objects have methods, and data of course. Every function is an object. Specifically, each function is an object of &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function&#34;&gt;Function&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ok, let&amp;rsquo;s see how to use &lt;code&gt;apply()&lt;/code&gt; and &lt;code&gt;call()&lt;/code&gt; methods to explicitely set &lt;code&gt;this&lt;/code&gt; then.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;randomWeights&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt;];
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;addToBox&lt;/span&gt;() {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;weight&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arguments&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) {
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;weight&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arguments&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;];
+	}
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;weight&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;weight&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;redBox&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {};
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;blueBox&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {};
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;addToBox&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;apply&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;redBox&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;randomWeights&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;addToBox&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;call&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;blueBox&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;redBox&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;weight&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints &amp;#39;60&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;blueBox&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;weight&lt;/span&gt;);&lt;span style=&#34;color:#75715e&#34;&gt;// prints &amp;#39;15&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Both, &lt;code&gt;apply()&lt;/code&gt; and &lt;code&gt;call()&lt;/code&gt; methods takes first argument as the object that can be used as &lt;em&gt;function context&lt;/em&gt; i.e. &lt;code&gt;this&lt;/code&gt;. The difference between these two methods is how the rest of the arguments are supplied to the function. &lt;code&gt;apply()&lt;/code&gt; takes an array of arguments whereas &lt;code&gt;call()&lt;/code&gt; takes any number of arguments.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JavaScript scopes</title>
+      <link>https://ashishdasnurkar.com/blog/2014/11/24/javascript-scopes/</link>
+      <pubDate>Mon, 24 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>https://ashishdasnurkar.com/blog/2014/11/24/javascript-scopes/</guid>
+      <description>&lt;p&gt;I started my programming career with C,C++/VC++ and then Java. All are known as C family languages and they all share &lt;em&gt;block level scope&lt;/em&gt; when it comes to variables and function declarations. In other words each block, typically represented by &lt;code&gt;{&lt;/code&gt; and &lt;code&gt;}&lt;/code&gt; braces, creates a new scope. For e.g.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;studio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d &amp;#34;&lt;/span&gt;, a); &lt;span style=&#34;color:#75715e&#34;&gt;//1
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+		printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d &amp;#34;&lt;/span&gt;, a); &lt;span style=&#34;color:#75715e&#34;&gt;//2
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	}
+
+	printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d &amp;#34;&lt;/span&gt;, a); &lt;span style=&#34;color:#75715e&#34;&gt;//1
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Scope of &lt;!-- raw HTML omitted --&gt;int a&lt;!-- raw HTML omitted --&gt; variable declared inside &lt;!-- raw HTML omitted --&gt;if&lt;!-- raw HTML omitted --&gt; block exists only till the end of &lt;!-- raw HTML omitted --&gt;if&lt;!-- raw HTML omitted --&gt; block.&lt;/p&gt;
+&lt;p&gt;However when I started working with JavaScript I tripped real hard understanding scopes in JavaScript. JavaScript&amp;rsquo;s C family like syntax had me fooled. The thing is JavaScript scopes are fundamentally different as they are defined by &lt;em&gt;functions&lt;/em&gt;, not by blocks. For eg.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;() {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints &amp;#39;function&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) { 
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;() {};
+	}
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints &amp;#39;function&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// prints &amp;#39;undefined&amp;#39; as expected
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here function &lt;!-- raw HTML omitted --&gt;b&lt;!-- raw HTML omitted --&gt; is accessible i.e. prints &amp;lsquo;function&amp;rsquo; even after the &lt;!-- raw HTML omitted --&gt;if&lt;!-- raw HTML omitted --&gt; block ends. In fact, function &lt;!-- raw HTML omitted --&gt;b&lt;!-- raw HTML omitted --&gt; can also be forward referenced before the &lt;!-- raw HTML omitted --&gt;if&lt;!-- raw HTML omitted --&gt; block. This is known as &lt;em&gt;function hoisting&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Here comes the tricky part though. Variables declarations in JavaScript are in scope from their point of declaration inside a function till the end of function, irrespective of block nesting. For e.g.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;() {
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints &amp;#39;undefined&amp;#39; because var b is not in scope yet
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) { 
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;// var b will be in scope till the end of function a
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	}
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;typeof&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints &amp;#39;number&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// prints &amp;#39;undefined&amp;#39; as expected
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Notice that unlike &lt;!-- raw HTML omitted --&gt;function b&lt;!-- raw HTML omitted --&gt; in previous sample code, &lt;!-- raw HTML omitted --&gt;var b&lt;!-- raw HTML omitted --&gt; here can not be forward referenced.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JavaScript functions travel first class</title>
+      <link>https://ashishdasnurkar.com/blog/2014/11/21/javascript-functions-travel-first-class/</link>
+      <pubDate>Fri, 21 Nov 2014 00:00:00 +0000</pubDate>
+      <guid>https://ashishdasnurkar.com/blog/2014/11/21/javascript-functions-travel-first-class/</guid>
+      <description>&lt;p&gt;Functions in JavaScript are first class citizens of the language just like Objects.&lt;/p&gt;
+&lt;p&gt;In another words Functions enjoy all the same privileges (in fact more) as do the Objects in JavaScript.&lt;/p&gt;
+&lt;p&gt;Privileges such as&lt;/p&gt;
+&lt;h3 id=&#34;1-functions-can-be-created-via-a-literal&#34;&gt;1. Functions can be created via a literal.&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;obj&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;}; &lt;span style=&#34;color:#75715e&#34;&gt;// object literal
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;) { &lt;span style=&#34;color:#75715e&#34;&gt;// function literal
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;;
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;2-functions-can-be-assigned-to-variables-array-entries-and-object-properties&#34;&gt;2. Functions can be assigned to variables, array entries and object properties.&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;) { &lt;span style=&#34;color:#75715e&#34;&gt;// function assigned to a variable
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;;
+};
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [];
+&lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;// function assigned to array entry at index 0
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;obj&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {};
+&lt;span style=&#34;color:#a6e22e&#34;&gt;obj&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;addMethod&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;// function assigned to Object obj as a addMethod property
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;3-functions-can-be-passed-as-arguments-to-other-functions&#34;&gt;3. Functions can be passed as arguments to other functions.&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;values&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;34&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;56&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt; , &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;123&lt;/span&gt;];
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;descendingComparator&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;value1&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;value2&lt;/span&gt;) {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;value2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;value1&lt;/span&gt;;
+}
+&lt;span style=&#34;color:#a6e22e&#34;&gt;values&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;sort&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;descendingComparator&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// function descendingComparator passed as argument
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;values&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// this should print [123, 56, 34, 12, 11, 5] 
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;4-functions-can-be-returned-as-values-from-other-functions&#34;&gt;4. Functions can be returned as values from other functions&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;multiplier&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt;) {
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;y&lt;/span&gt;) { &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;y&lt;/span&gt;;};
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;doubleIt&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;multiplier&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;doubleIt&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)); &lt;span style=&#34;color:#75715e&#34;&gt;// prints 4
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tripleIt&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;multiplier&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;tripleIt&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)); &lt;span style=&#34;color:#75715e&#34;&gt;// prints 9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;5-functions-can-also-have-their-own-properties-and-these-properties-can-be-added-or-removed-dynamically&#34;&gt;5. Functions can also have their own properties and these properties can be added or removed dynamically&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;myFunc&lt;/span&gt;() {}
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;myFunc&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;prop1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prop1&amp;#39;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;myFunc&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;prop1&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// prints prop1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In addition to all of above, Functions also have special superpower in that they can be &lt;em&gt;invoked&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
